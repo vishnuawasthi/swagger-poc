@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+//import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
 
 @Configuration
 @EnableWebMvc
-//@Import(value=SwaggerConfig.class)
+@Import(value=SwaggerConfig.class)
 @ComponentScan(basePackages = { "com.swagger.poc.config", 
 		"com.swagger.poc.controlller", 
 		"com.swagger.poc.service",
@@ -20,10 +20,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	
 	
-	@Bean
+	/*@Bean
 	public SpringSwaggerConfig springSwaggerConfig(){
 		SpringSwaggerConfig config = new SpringSwaggerConfig();
 		return config;
-	}
+	}*/
 	
 }

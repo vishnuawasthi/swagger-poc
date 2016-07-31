@@ -7,23 +7,26 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swagger.poc.dto.User;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-@Api(basePath="http://localhost:8080/swagger-poc",value="User api has a rich collection of operation which can we performed on the user details.")
-@RestController
+@Api(basePath="http://localhost:8080/swagger-poc",  value="getUsers",description="User api has a rich collection of operation which can we performed on the user details.")
+//@RestController
+@Controller
 public class UserController {
 
-	@ApiOperation(value="This api provides details of user access by id.")
+	@ApiOperation(  value="/getUser/{id}")
 	@RequestMapping( value = "/getUser/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpEntity<User> getUser(@PathVariable(value = "id") Integer id) {
+	public @ResponseBody HttpEntity<User> getUser(@PathVariable(value = "id") Integer id) {
 		System.out.println("getUser() - start");
 		List<User> users = usersList(id);
 		if (!CollectionUtils.isEmpty(users)) {
@@ -36,7 +39,7 @@ public class UserController {
 
 	
 	@RequestMapping(value = "/getUsers", produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpEntity<List<User>> getUsers() {
+	public @ResponseBody HttpEntity<List<User>> getUsers() {
 		System.out.println("getUsers() - start");
 		List<User> users = usersList(null);
 		System.out.println("getUser() - end");
